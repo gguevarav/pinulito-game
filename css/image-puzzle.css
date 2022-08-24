@@ -1,0 +1,28 @@
+﻿/*
+    Imagen original, tiene un borde y un ancho fijo
+ */
+#collage img#actualImage{
+    border:2px solid #000000;
+    height:280px;
+    width:280px;
+}
+
+#collage #sortable {
+    border:2px solid #000000;
+    list-style-type: none;
+    display: inline-block;
+    margin: 10px;
+    padding: 0;
+    width: 405px;
+}
+
+    #collage #sortable li {
+        background-size: 400% 400%;
+        border: none;
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
+        float: left;
+        width: 100px;
+        height: 100px;
+    }

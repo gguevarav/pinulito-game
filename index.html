@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Pollo pinulito</title>
+    <link href="css/image-puzzle.css" rel="stylesheet" />
+    <script src="js/image-puzzle.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+    <div id="collage" class="container">
+        <h2>Pollo Pinulito</h2>
+        <hr />
+        <div id="playPanel" class="container">
+            <div class="row">
+                <div class="col s6">
+                    <ul id="sortable" class="sortable"></ul>
+                </div>
+                <div class="col s6">
+                    <div class="container" id="actualImageBox">
+                        <div class="container">
+                            <div id="stepBox">
+                                <span>Pasos:</span>
+                                <span id="stepCount" class="stepCount">0</span>
+                            </div>
+                            <div id="timeBox">
+                                <span>Tiempo transcurrido: </span><span id="timerPanel"> segundos</span>
+                            </div>
+                            <div>
+                                <img id="actualImage" />
+                                <h5>Imagen original</h5>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <p id="levelPanel">
+                                <label>
+                                    <input name="level" type="radio" checked value="3" onchange="imagePuzzle.startGame(images, this.value);"/>
+                                    <span>Fácil</span>
+                                </label>
+                                <label>
+                                    <input name="level" type="radio" value="4" onchange="imagePuzzle.startGame(images, this.value);"/>
+                                    <span>Medio</span>
+                                </label>
+                                <label>
+                                    <input name="level" type="radio" value="5" onchange="imagePuzzle.startGame(images, this.value);"/>
+                                    <span>Difícil</span>
+                                </label>
+                            </p>
+                        </div>
+                        <div class="container">
+                                <a id="btnRule" type="button" class="waves-effect waves-light btn-small" onclick="reiniciar();">Reiniciar</a>
+                                <a id="btnReplay" type="button" class="waves-effect waves-light btn-small" onclick="about();">Acerca de</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="gameOver" style="display:none;">
+            <div style="background-color: #fc9e9e; padding: 5px 10px 20px 10px; text-align: center; ">
+                <h2 style="text-align:center">Game Over!!</h2>
+                Congratulations!! <br /> You have completed this picture.
+                <br /> Steps: <span id="stepCount" class="stepCount">0</span> steps.
+                <br /> Time Taken: <span class="timeCount">0</span> seconds<br />
+                <div>
+                    <button type="button" onclick="window.location.reload(true);">Play Again</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var images = [
+                { src: 'images/pollo-pinulito.jpg', title: 'Pollo Pinulito' },
+                // { src: 'images/london-bridge.jpg', title: 'London Bridge' },
+                // { src: 'images/lotus-temple.jpg', title: 'Lotus Temple' },
+                // { src: 'images/qutub-minar.jpg', title: 'Qutub Minar' },
+                // { src: 'images/statue-of-liberty.jpg', title: 'Statue Of Liberty' },
+                // { src: 'images/taj-mahal.jpg', title: 'Taj Mahal' }
+            ];
+
+            window.onload = function () {
+                var gridSize = document.querySelector('#levelPanel input[type="radio"]:checked').getAttribute('value');
+                imagePuzzle.startGame(images, gridSize);
+            };
+            function reiniciar() {
+                var gridSize = document.querySelector('#levelPanel input[type="radio"]:checked').getAttribute('value');
+                imagePuzzle.startGame(images, gridSize);
+            }
+            function rules() {
+                alert('Re arrange the image parts in a way that it correctly forms the picture. \nThe no. of steps taken will be counted.');
+            }
+            function about() {
+                alert('Developed by Anurag Gandhi. \nHe can be contacted at: soft.gandhi@gmail.com');
+            }
+        </script>
+    </div>
+</body>
+</html>
