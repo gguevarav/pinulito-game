@@ -1,101 +1,130 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+﻿<!doctype html>
+<html lang="en">
 <head>
-    <title>Pollo pinulito</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link href="css/image-puzzle.css" rel="stylesheet" />
     <script src="js/image-puzzle.js"></script>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</head>
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Juego de Rompecabezas</title>
+</head>
 <body>
-    <div id="collage" class="container">
-        <h2>Pollo Pinulito</h2>
-        <hr />
-        <div id="playPanel" class="container">
-            <div class="row">
-                <div class="col s6">
-                    <ul id="sortable" class="sortable"></ul>
-                </div>
-                <div class="col s6">
-                    <div class="container" id="actualImageBox">
-                        <div class="container">
-                            <div id="stepBox">
-                                <span>Pasos:</span>
-                                <span id="stepCount" class="stepCount">0</span>
-                            </div>
-                            <div id="timeBox">
-                                <span>Tiempo transcurrido: </span><span id="timerPanel"> segundos</span>
-                            </div>
-                            <div>
-                                <img id="actualImage" />
-                                <h5>Imagen original</h5>
-                            </div>
+
+<div id="collage" class="container">
+    <h2>Pollo Pinulito</h2>
+    <hr />
+    <div id="playPanel" class="container">
+        <div class="row justify-content-md-center">
+            <div class="col">
+                <ul id="sortable" class="sortable"></ul>
+            </div>
+            <div class="col">
+                <div class="container" id="actualImageBox">
+                    <div class="container">
+                        <div id="stepBox">
+                            <span>Pasos:</span>
+                            <span id="stepCount" class="stepCount">0</span>
                         </div>
-                        <div class="container">
-                            <p id="levelPanel">
-                                <label>
-                                    <input name="level" type="radio" checked value="3" onchange="imagePuzzle.startGame(images, this.value);"/>
-                                    <span>Fácil</span>
-                                </label>
-                                <label>
-                                    <input name="level" type="radio" value="4" onchange="imagePuzzle.startGame(images, this.value);"/>
-                                    <span>Medio</span>
-                                </label>
-                                <label>
-                                    <input name="level" type="radio" value="5" onchange="imagePuzzle.startGame(images, this.value);"/>
-                                    <span>Difícil</span>
-                                </label>
-                            </p>
+                        <div id="timeBox">
+                            <span>Tiempo transcurrido: </span><span id="timerPanel"> segundos</span>
                         </div>
-                        <div class="container">
-                                <a id="btnRule" type="button" class="waves-effect waves-light btn-small" onclick="reiniciar();">Reiniciar</a>
-                                <a id="btnReplay" type="button" class="waves-effect waves-light btn-small" onclick="about();">Acerca de</a>
+                        <div>
+                            <img id="actualImage" />
+                            <h5>Imagen original</h5>
                         </div>
+                    </div>
+                    <div class="container">
+                        <p id="levelPanel">
+                            <label>
+                                <input name="level" type="radio" checked value="3" onchange="imagePuzzle.startGame(images, this.value);"/>
+                                <span>Fácil</span>
+                            </label>
+                            <label>
+                                <input name="level" type="radio" value="4" onchange="imagePuzzle.startGame(images, this.value);"/>
+                                <span>Medio</span>
+                            </label>
+                            <label>
+                                <input name="level" type="radio" value="5" onchange="imagePuzzle.startGame(images, this.value);"/>
+                                <span>Difícil</span>
+                            </label>
+                        </p>
+                    </div>
+                    <div class="container">
+                        <button id="btnRule" type="button" class="btn btn-primary" onclick="reiniciar();">Reiniciar</button>
+                        <button id="btnReplay" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Acerca de</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="gameOver" style="display:none;">
-            <div style="background-color: #fc9e9e; padding: 5px 10px 20px 10px; text-align: center; ">
-                <h2 style="text-align:center">Game Over!!</h2>
-                Congratulations!! <br /> You have completed this picture.
-                <br /> Steps: <span id="stepCount" class="stepCount">0</span> steps.
-                <br /> Time Taken: <span class="timeCount">0</span> seconds<br />
-                <div>
-                    <button type="button" onclick="window.location.reload(true);">Play Again</button>
+    </div>
+
+    <!-- Modal de instrucciones -->
+    <div class="modal fade" id="ModalInstrucciones" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="EjemploEtiquetaModalInstrucciones">Acerca de</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h3>Juego de rompecabezas para Pinulito</h3>
+                    <h4>&copy; - Corp de Guatemala, S. A.</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
-
-        <script>
-            var images = [
-                { src: 'images/pollo-pinulito.jpg', title: 'Pollo Pinulito' },
-                // { src: 'images/london-bridge.jpg', title: 'London Bridge' },
-                // { src: 'images/lotus-temple.jpg', title: 'Lotus Temple' },
-                // { src: 'images/qutub-minar.jpg', title: 'Qutub Minar' },
-                // { src: 'images/statue-of-liberty.jpg', title: 'Statue Of Liberty' },
-                // { src: 'images/taj-mahal.jpg', title: 'Taj Mahal' }
-            ];
-
-            window.onload = function () {
-                var gridSize = document.querySelector('#levelPanel input[type="radio"]:checked').getAttribute('value');
-                imagePuzzle.startGame(images, gridSize);
-            };
-            function reiniciar() {
-                var gridSize = document.querySelector('#levelPanel input[type="radio"]:checked').getAttribute('value');
-                imagePuzzle.startGame(images, gridSize);
-            }
-            function rules() {
-                alert('.');
-            }
-            function about() {
-                alert('Corp de Guatemala');
-            }
-        </script>
     </div>
+
+    <!-- Modal acerca de-->
+    <div class="modal fade" id="ModalAcercaDe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="EjemploEtiquetaModalAcercaDe">Acerca de</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h3>Juego de rompecabezas para Pinulito</h3>
+                    <h4>&copy; - Corp de Guatemala, S. A.</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var images = [
+            { src: 'images/pollo-pinulito.jpg', title: 'Pollo Pinulito' }
+        ];
+
+        window.onload = function () {
+            var gridSize = document.querySelector('#levelPanel input[type="radio"]:checked').getAttribute('value');
+            imagePuzzle.startGame(images, gridSize);
+        };
+        function reiniciar() {
+            var gridSize = document.querySelector('#levelPanel input[type="radio"]:checked').getAttribute('value');
+            imagePuzzle.startGame(images, gridSize);
+        }
+    </script>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
 </body>
 </html>
